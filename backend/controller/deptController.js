@@ -113,7 +113,7 @@ export const viewMarks=async(req, res)=>{
 export const workStatus=async(req, res)=>{
     try{
         const {date, department, is_working, reason}=req.body;
-        if(!date || !department || !is_working || !reason){
+        if(!date || !department || !reason){
              return res.status(400).json({message:"invalid input"})
         }
         const row= await db.query(`insert into calendar (today, dept_id, is_working, reason) values (?, ?, ?, ?)`, [date, department, is_working, reason]);
@@ -180,7 +180,7 @@ export const getAttendance=async(req, res)=>{
         if(!row){
             return res.status(400).json({message:"failed to fetch attendance"});
         }
-        res.status(200).json({message:"sucess", data:row[0]});
+        res.status(200).json({message:"sucess", data:row[0]})
     }
     catch(err){
         res.status(500).json({"message":err.message});
